@@ -13,22 +13,22 @@
     },
     "protocol": {
       "description": "协议类型：1-udp(QUIC)，2-faketcp，3-wechat-video",
-      "value": "3"
+      "value": "1"
     },
     "download": {
       "description": "客户端期望的下行速度(默认50mbps)",
-      "value": "50"
+      "value": "200"
     },
     "upload": {
       "description": "客户端期望的上行速度(默认10mbps)",
-      "value": "10"
+      "value": "30"
     },
     "auth_str": {
       "description": "认证口令",
       "value": ""
     }
   },
-  "website": "https://github.com/yuehen7/HerokuHysteria",
-  "repository": "https://github.com/yuehen7/HerokuHysteria",
+  "website": "https://github.com/issacqin/HerokuHysteria",
+  "repository": "https://github.com/issacqin/HerokuHysteria",
   "stack": "container"
 }

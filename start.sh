@@ -186,12 +186,13 @@ systemctl start hysteria
 echo -e "\033[1;;35m\nwait...\n\033[0m"
 sleep 3
 status=`systemctl is-active hysteria`
-if [ "${status}" = "active" ];then
-crontab -l > ./crontab.tmp
-echo  "0 4 * * * systemctl restart hysteria" >> ./crontab.tmp
-crontab ./crontab.tmp
-rm -rf ./crontab.tmp
 
-echo -e "\033[35m↓***********************************↓↓↓copy↓↓↓*******************************↓\033[0m"
-cat ./config.json
-echo -e "\033[35m↑***********************************↑↑↑copy↑↑↑*******************************↑\033[0m"
+if [ "${status}" = "active" ]; then
+  crontab -l > ./crontab.tmp
+  echo  "0 4 * * * systemctl restart hysteria" >> ./crontab.tmp
+  crontab ./crontab.tmp
+  rm -rf ./crontab.tmp
+fi
+  echo -e "\033[35m↓***********************************↓↓↓copy↓↓↓*******************************↓\033[0m"
+  cat ./config.json
+  echo -e "\033[35m↑***********************************↑↑↑copy↑↑↑*******************************↑\033[0m"

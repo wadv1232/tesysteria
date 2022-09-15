@@ -161,6 +161,7 @@ EOF
 
 fi
 
+mkdir -p /etc/systemd/system
 cat <<EOF >/etc/systemd/system/hysteria.service
 [Unit]
 Description=hysteria:Hello World!

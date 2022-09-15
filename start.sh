@@ -180,16 +180,17 @@ sysctl -p
 netfilter-persistent save
 netfilter-persistent reload
 chmod 644 /etc/systemd/system/hysteria.service
-systemctl daemon-reload
-systemctl enable hysteria
-systemctl start hysteria
+#systemctl daemon-reload
+#systemctl enable hysteria
+rc-service hysteria start
+#systemctl start hysteria
 echo -e "\033[1;;35m\nwait...\n\033[0m"
 sleep 3
-status=`systemctl is-active hysteria`
+status=`rc-service --list | grep -i hysteria`
 
-if [ "${status}" = "active" ]; then
+if [ "${status}" = "hysteria" ]; then
   crontab -l > ./crontab.tmp
-  echo  "0 4 * * * systemctl restart hysteria" >> ./crontab.tmp
+  echo  "0 4 * * * rc-service hysteria restart" >> ./crontab.tmp
   crontab ./crontab.tmp
   rm -rf ./crontab.tmp
 fi

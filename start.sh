@@ -183,6 +183,7 @@ netfilter-persistent reload
 chmod 644 /etc/systemd/system/hysteria.service
 #systemctl daemon-reload
 #systemctl enable hysteria
+rc-update add hysteria
 rc-service hysteria start
 #systemctl start hysteria
 echo -e "\033[1;;35m\nwait...\n\033[0m"

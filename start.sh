@@ -71,12 +71,12 @@ cat <<EOF > config.json
 "up_mbps": $upload,
 "down_mbps": $download,
 "http": {
-"listen": "127.0.0.1:8888",
+"listen": "127.0.0.1:1081",
 "timeout" : 300,
 "disable_udp": false
 },
 "socks5": {
-"listen": "127.0.0.1:8889",
+"listen": "127.0.0.1:1080",
 "timeout": 300,
 "disable_udp": false,
 "user": "pekora",
@@ -133,12 +133,12 @@ cat <<EOF > config.json
 "up_mbps": $upload,
 "down_mbps": $download,
 "http": {
-"listen": "127.0.0.1:8888",
+"listen": "127.0.0.1:1081",
 "timeout" : 300,
 "disable_udp": false
 },
 "socks5": {
-"listen": "127.0.0.1:8889",
+"listen": "127.0.0.1:1080",
 "timeout": 300,
 "disable_udp": false,
 "user": "pekora",

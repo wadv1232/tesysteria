@@ -168,30 +168,19 @@ depend() {
 	after network.target
 }
 EOF
-chmod +x /etc/init.d/hysteria
-#mkdir -p /etc/systemd/system
-cat <<EOF >/etc/systemd/system/hysteria.service
-[Unit]
-Description=hysteria:Hello World!
-After=network.target
-[Service]
-Type=simple
-PIDFile=/run/hysteria.pid
-ExecStart=/etc/hysteria/hysteria --log-level warn -c /etc/hysteria/config.json server
-#Restart=on-failure
-#RestartSec=10s
-[Install]
-WantedBy=multi-user.target
-EOF
+
+
+
 
 #sysctl -w net.core.rmem_max=8000000
 #sysctl -p
 #netfilter-persistent save
 #netfilter-persistent reload
-chmod 644 /etc/systemd/system/hysteria.service
+#chmod 644 /etc/systemd/system/hysteria.service
+chmod +x /etc/init.d/hysteria
 #systemctl daemon-reload
 #systemctl enable hysteria
-#install -m 755 /etc/systemd/system/hysteria.service /etc/init.d/hysteria
+
 rc-update add hysteria
 rc-service hysteria start
 #/etc/init.d/hysteria start

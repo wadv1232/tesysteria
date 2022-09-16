@@ -17,13 +17,13 @@ r_conn=$(($r_client / 4))
 
 if [ -z "${protocol}" ] || [ $protocol == "3" ];then
   protocol="wechat-video"
-  iptables -I INPUT -p udp --dport ${port} -m comment --comment "allow udp(hihysteria)" -j ACCEPT
+  echo iptables -I INPUT -p udp --dport ${port} -m comment --comment "allow udp(hihysteria)" -j ACCEPT
 elif [ $protocol == "2" ];then
   protocol="faketcp"
-  iptables -I INPUT -p tcp --dport ${port}  -m comment --comment "allow tcp(hihysteria)" -j ACCEPT
+  echo iptables -I INPUT -p tcp --dport ${port}  -m comment --comment "allow tcp(hihysteria)" -j ACCEPT
 else 
   protocol="udp"
-  iptables -I INPUT -p udp --dport ${port} -m comment --comment "allow udp(hihysteria)" -j ACCEPT
+  echo iptables -I INPUT -p udp --dport ${port} -m comment --comment "allow udp(hihysteria)" -j ACCEPT
 fi
 
 if [ "$domain" = "wechat.com" ];then
@@ -98,8 +98,8 @@ cat <<EOF > config.json
 EOF
 
 else
-iptables -I INPUT -p tcp --dport 80  -m comment --comment "allow tcp(hihysteria)" -j ACCEPT
-iptables -I INPUT -p tcp --dport 443  -m comment --comment "allow tcp(hihysteria)" -j ACCEPT
+echo iptables -I INPUT -p tcp --dport 80  -m comment --comment "allow tcp(hihysteria)" -j ACCEPT
+echo iptables -I INPUT -p tcp --dport 443  -m comment --comment "allow tcp(hihysteria)" -j ACCEPT
 cat <<EOF > /etc/hysteria/config.json
 {
   "listen": ":$port",
@@ -178,8 +178,8 @@ EOF
 
 sysctl -w net.core.rmem_max=8000000
 sysctl -p
-netfilter-persistent save
-netfilter-persistent reload
+#netfilter-persistent save
+#netfilter-persistent reload
 chmod 644 /etc/systemd/system/hysteria.service
 #systemctl daemon-reload
 #systemctl enable hysteria

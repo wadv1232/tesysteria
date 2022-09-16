@@ -182,8 +182,8 @@ chmod +x /etc/init.d/hysteria
 #systemctl enable hysteria
 
 rc-update add hysteria
-rc-service hysteria start
-#/etc/init.d/hysteria start
+#rc-service hysteria start
+/etc/init.d/hysteria start
 #systemctl start hysteria
 echo -e "\033[1;;35m\nwait...\n\033[0m"
 sleep 3

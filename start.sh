@@ -160,8 +160,16 @@ cat <<EOF > config.json
 EOF
 
 fi
-
-mkdir -p /etc/systemd/system
+cat <<EOF >/etc/init.d/hysteria
+command="/etc/hysteria/hysteria"
+command_args="--log-level warn -c /etc/hysteria/config.json server"
+pidfile="/run/hysteria.pid"
+depend() {
+	after network.target
+}
+EOF
+chmod +x /etc/init.d/hysteria
+#mkdir -p /etc/systemd/system
 cat <<EOF >/etc/systemd/system/hysteria.service
 [Unit]
 Description=hysteria:Hello World!
@@ -176,17 +184,17 @@ ExecStart=/etc/hysteria/hysteria --log-level warn -c /etc/hysteria/config.json s
 WantedBy=multi-user.target
 EOF
 
-sysctl -w net.core.rmem_max=8000000
-sysctl -p
+#sysctl -w net.core.rmem_max=8000000
+#sysctl -p
 #netfilter-persistent save
 #netfilter-persistent reload
 chmod 644 /etc/systemd/system/hysteria.service
 #systemctl daemon-reload
 #systemctl enable hysteria
-install -m 755 /etc/systemd/system/hysteria.service /etc/init.d/hysteria
+#install -m 755 /etc/systemd/system/hysteria.service /etc/init.d/hysteria
 rc-update add hysteria
-#rc-service hysteria start
-/etc/init.d/hysteria start
+rc-service hysteria start
+#/etc/init.d/hysteria start
 #systemctl start hysteria
 echo -e "\033[1;;35m\nwait...\n\033[0m"
 sleep 3

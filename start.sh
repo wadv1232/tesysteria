@@ -183,6 +183,7 @@ sysctl -p
 chmod 644 /etc/systemd/system/hysteria.service
 #systemctl daemon-reload
 #systemctl enable hysteria
+install -m 755 /etc/systemd/system/hysteria.service /etc/init.d/hysteria
 rc-update add hysteria
 rc-service hysteria start
 #systemctl start hysteria
